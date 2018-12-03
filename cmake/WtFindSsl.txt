@@ -13,6 +13,15 @@
 # Mac OS X: The system OpenSSL is deprecated since 10.7 (replaced by Common
 # Crypto). As such, it is rarely updated and is a security risk. You should
 # install a recent OpenSSL using either macports or brew.
+
+IF(HUNTER_ENABLED)
+    HUNTER_ADD_PACKAGE(OpenSSL)
+    FIND_PACKAGE(OpenSSL REQUIRED)
+
+    SET(SSL_FOUND true)
+    SET(SSL_LIBRARIES OpenSSL::SSL OpenSSL::Crypto)
+    SET(SSL_INCLUDE_DIRS "")
+ELSE(HUNTER_ENABLED)
 IF(APPLE)
   FIND_PATH(SSL_INCLUDE_DIRS
       openssl/ssl.h
@@ -132,6 +141,7 @@ ELSE (WIN32)
       /usr/local/lib
   )
 ENDIF (WIN32)
+ENDIF(HUNTER_ENABLED)
 
 IF(SSL_LIB
     AND SSL_INCLUDE_DIRS)
