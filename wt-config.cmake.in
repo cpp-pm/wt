@@ -1,3 +1,21 @@
+include(CMakeFindDependencyMacro) 
+
+if("@WT_WITH_MYSQL@")
+  find_dependency(MySQL-client CONFIG)
+endif()
+  
+if("@PNG_FOUND@")
+  find_dependency(PNG CONFIG)
+endif()
+  
+if("@WT_WITH_SSL@")
+  find_dependency(OpenSSL)
+endif()
+  
+if("@ZLIB_FOUND@")
+  find_dependency(ZLIB CONFIG)
+endif()
+
 if(@_WTCONFIG_CMAKE_FIND_BOOST@)
   # Find Boost
   set(Boost_USE_STATIC_LIBS @Boost_USE_STATIC_LIBS@)

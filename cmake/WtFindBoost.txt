@@ -1,4 +1,9 @@
 # Includes the appropriate boost finder
+IF(HUNTER_ENABLED)
+    INCLUDE(${WT_SOURCE_DIR}/cmake/WtFindBoost-hunter.txt)
+    RETURN()
+endif(HUNTER_ENABLED)
+
 IF(WT_BOOST_DISCOVERY)
   INCLUDE(${WT_SOURCE_DIR}/cmake/WtFindBoost-vintage.txt)
 ELSE(WT_BOOST_DISCOVERY)

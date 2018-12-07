@@ -6,6 +6,15 @@
 # Taking into account:
 # - ZLIB_PREFIX
 
+IF(HUNTER_ENABLED)
+  hunter_add_package(ZLIB)
+  find_package(ZLIB CONFIG REQUIRED)
+
+  SET(ZLIB_FOUND TRUE)
+  SET(ZLIB_INCLUDE_DIRS "")
+  SET(ZLIB_LIBRARIES ZLIB::zlib)
+  RETURN()
+ENDIF(HUNTER_ENABLED)
 FIND_PATH(ZLIB_INCLUDE zlib.h
   ${ZLIB_PREFIX}/include
   /usr/include
